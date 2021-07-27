@@ -23,7 +23,6 @@ export const Map = ({
       center,
       zoom,
     });
-    
 
     map.on("load", () => {
       setMap(map);
@@ -41,16 +40,18 @@ export const Map = ({
     map?.setZoom(zoom);
   }, [map, zoom]);
 
-//   function addPoint() {
-//     var marker = L.marker([53.7755648, -1.5433728], {
+  // Make a marker
+  var marker = new mapboxgl.Marker().setLngLat([30.5, 50.5]).addTo(map);
+  //   function addPoint() {
+  //     var marker = L.marker([53.7755648, -1.5433728], {
 
-//       icon: L.mapbox.marker.icon({
-//         "marker-size": "large",
-//         "marker-color": "#2196f3" 
-//       }),
-//     });
-//     marker.addTo(map);
-//   }
+  //       icon: L.mapbox.marker.icon({
+  //         "marker-size": "large",
+  //         "marker-color": "#2196f3"
+  //       }),
+  //     });
+  //     marker.addTo(map);
+  //   }
 
   return (
     <div ref={mapContainer} style={{ width: "100%", height: "100vh" }}>

@@ -1,8 +1,11 @@
-import React, { useState, Component } from "react";
+import React, { useState, Component, useEffect } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import AddToFirebase from "./components/AddToFirebase";
 import Map from "./components/map";
 import addPoint from "./components/map";
+import MapTest from "./components/MapTest";
+
+import otherMarker from "../src/marker-icons/map-marker-1.png";
 
 const App = () => {
   const [viewport, setViewport] = useState({
@@ -26,6 +29,8 @@ const App = () => {
     },
   });
 
+  useEffect(() => {});
+
   function showMyLocation() {
     if (!navigator.geolocation) {
       setStatus("Geolocation is not supported on your browser");
@@ -44,7 +49,7 @@ const App = () => {
           setLatitude(position.coords.latitude);
           setLongitude(position.coords.longitude);
           setViewport(newViewport);
-          console.log(latitude, longitude)
+          console.log(latitude, longitude);
         },
         () => {
           setStatus("Unable to retrieve your location");
@@ -55,7 +60,8 @@ const App = () => {
 
   return (
     <div>
-      <ReactMapGL
+      <MapTest />
+      {/* <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/qu1p/ckrgqg5an5n2618oii11m51r4"
@@ -79,8 +85,10 @@ const App = () => {
           {longitude && <p>Longitude: {longitude}</p>}
         </div>
         <AddToFirebase />
-        <Marker latitude={latitude} longitude={longitude}>Here</Marker>
-      </ReactMapGL>
+        <Marker latitude={latitude} longitude={longitude}>
+          <img src={otherMarker} alt="map marker"></img>
+        </Marker> */}
+      {/* </ReactMapGL> */}
     </div>
   );
 };
